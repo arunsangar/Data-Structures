@@ -11,11 +11,13 @@ class Stack:
         self.head = temp
 
     def pop(self):
+        # empty stack
         if(self.head == None):
             return None
+        # stack has at least one node
         temp = self.head
         self.head = temp.next
-        return temp
+        return temp.data
 
     def clear(self):
         while(self.head != None):
@@ -42,5 +44,8 @@ class Stack:
     def print(self):
         temp = self.head
         while(temp != None):
-            print(temp.data)
+            if(temp.next != None):
+                print(temp.data, end='->')
+            else:
+                print(temp.data)
             temp = temp.next

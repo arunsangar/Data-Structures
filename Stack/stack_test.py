@@ -19,7 +19,7 @@ def stack_test():
         stack.push(d)
     stack.print()
     print(stack.pop())
-    print(stack.pop().data)
+    print(stack.pop())
     print(stack.top())
     print(stack.is_empty())
     print(stack.get_size())

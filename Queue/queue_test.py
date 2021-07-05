@@ -19,7 +19,7 @@ def queue_test():
         queue.push(d)
     queue.print()
     print(queue.pop())
-    print(queue.pop().data)
+    print(queue.pop())
     print(queue.top())
     print(queue.is_empty())
     print(queue.get_size())

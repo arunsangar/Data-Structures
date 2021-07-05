@@ -6,67 +6,74 @@ class LinkedList:
         self.head = None
 
     def insert(self, x, loc):
+        # undefined location
         if(loc < 0):
-            print('Error: Cannot insert, undefined location')
             return
-        node = Node(x)
+        # insert at front of list
         if(loc == 0):
-            node.next = self.head
-            self.head = node
+            self.prepend(x)
+        # insert at specified location
         else:
+            node = Node(x)
             temp = self.head
             counter = 0
+            # find insertion point
             while(counter < loc - 1 and temp != None):
                 temp = temp.next
                 counter += 1
-            if(temp == None):
-                print('Cannot insert, location > size')
-            else:
+            # insert node if location was found
+            if(temp != None):
                 node.next = temp.next
                 temp.next = node
 
     def prepend(self, x):
-        self.insert(x, 0)
+        # insert at front of list
+        node = Node(x)
+        node.next = self.head
+        self.head = node
 
     def append(self, x):
+        # empty list
         if(self.head == None):
             self.head = Node(x)
+        # insert at back of list
         else:
             temp = self.head
+            # get the last node
             while(temp.next != None):
                 temp = temp.next
             temp.next = Node(x)
 
     def delete(self, x):
+        # empty list
         if(self.head == None):
-            print('Cannot delete, empty list')
             return
         temp = self.head
         prev = self.head
+        # delete first node (head)
         if(temp.data == x):
             self.head = temp.next
-            temp = None
         else:
+            # find node set for deletion
             while(temp != None and temp.data != x):
                 prev = temp
                 temp = temp.next
-            if(temp == None):
-                print('Cannot delete, node not found')
-            else:
+            # delete the node if it was found
+            if(temp != None):
                 prev.next = temp.next
-                temp = None
 
     def clear(self):
         temp = self.head
         while(temp != None):
             self.head = temp.next
-            temp = None
             temp = self.head
 
     def get_node(self, x):
+        # empty list
         if(self.head == None):
             return None
         temp = self.head
+        # find the node
         while (temp != None and temp.data != x):
             temp = temp.next
         return temp
@@ -87,5 +94,8 @@ class LinkedList:
     def print(self):
         temp = self.head
         while(temp != None):
-            print(temp.data)
+            if(temp.next != None):
+                print(temp.data, end='->')
+            else:
+                print(temp.data)
             temp = temp.next
