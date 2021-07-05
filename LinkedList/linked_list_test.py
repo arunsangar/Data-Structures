@@ -3,6 +3,7 @@ from numbers import *
 
 
 def linked_list_test():
+    print("Linked List Test")
     linkedlist = LinkedList()
 
     # empty list

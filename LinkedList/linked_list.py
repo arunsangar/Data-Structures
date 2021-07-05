@@ -71,6 +71,11 @@ class LinkedList:
             temp = temp.next
         return temp
 
+    def is_empty(self):
+        if(self.head == None):
+            return True
+        return False
+
     def get_size(self):
         counter = 0
         temp = self.head

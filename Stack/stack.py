@@ -11,14 +11,25 @@ class Stack:
         self.head = temp
 
     def pop(self):
-        if(self.head != None):
-            temp = self.head
-            self.head = temp.next
-            return temp.data
+        if(self.head == None):
+            return None
+        temp = self.head
+        self.head = temp.next
+        return temp
 
     def clear(self):
         while(self.head != None):
             self.pop()
+
+    def top(self):
+        if(self.head == None):
+            return None
+        return self.head.data
+
+    def is_empty(self):
+        if(self.head == None):
+            return True
+        return False
 
     def get_size(self):
         counter = 0
