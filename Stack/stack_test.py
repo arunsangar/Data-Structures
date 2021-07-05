@@ -24,3 +24,4 @@ def stack_test():
     print(stack.is_empty())
     print(stack.get_size())
     stack.clear()
+    print(stack.is_empty())
