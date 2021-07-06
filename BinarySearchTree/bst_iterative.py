@@ -109,48 +109,64 @@ class BSTIterative:
             return True
         return False
 
-    def print_inorder(self):
+    def print(self, order='inorder'):
+        data = []
+        if(order == 'inorder'):
+            data = self.inorder()
+        elif(order == 'preorder'):
+            data = self.preorder()
+        else:
+            data = self.postorder()
+        while(data != []):
+            if(len(data) > 1):
+                print(data.pop(), end='->')
+            else:
+                print(data.pop())
+
+    def inorder(self):
         stack = []
+        data = []
         temp = self.root
         while(stack != [] or temp != None):
+            # traverse left, as far as possible
             if(temp != None):
                 stack.append(temp)
                 temp = temp.left
+            # add root to ordered list and move to right child
             else:
                 temp = stack.pop()
-                if(stack == [] and temp.right == None):
-                    print(temp.data)
-                else:
-                    print(temp.data, end='->')
+                data.insert(0, temp.data)
                 temp = temp.right
+        return data
 
-    def print_preorder(self):
+    def preorder(self):
         stack = []
+        data = []
         stack.append(self.root)
         while(stack != []):
             temp = stack.pop()
+            # add root to ordered list
+            data.insert(0, temp.data)
+            # add right child to stack
             if(temp.right != None):
                 stack.append(temp.right)
+            # add left child to stack
             if(temp.left != None):
                 stack.append(temp.left)
-            if(stack == []):
-                print(temp.data)
-            else:
-                print(temp.data, end='->')
+        return data
 
-    def print_postorder(self):
+    def postorder(self):
         stack = []
-        postorder = []
+        data = []
         stack.append(self.root)
         while(stack != []):
             temp = stack.pop()
-            postorder.append(temp.data)
+            # add root to back of ordered list
+            data.append(temp.data)
+            # add left child to stack
             if(temp.left != None):
                 stack.append(temp.left)
+            # add right child to stack
             if(temp.right != None):
                 stack.append(temp.right)
-        while(postorder != []):
-            if(len(postorder) > 1):
-                print(postorder.pop(), end='->')
-            else:
-                print(postorder.pop())
+        return data
