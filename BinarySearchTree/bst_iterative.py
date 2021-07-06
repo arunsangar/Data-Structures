@@ -111,12 +111,14 @@ class BSTIterative:
 
     def print(self, order='inorder'):
         data = []
+        # select order type
         if(order == 'inorder'):
             data = self.inorder()
         elif(order == 'preorder'):
             data = self.preorder()
         else:
             data = self.postorder()
+        # print ordered list
         while(data != []):
             if(len(data) > 1):
                 print(data.pop(), end='->')
@@ -124,6 +126,7 @@ class BSTIterative:
                 print(data.pop())
 
     def inorder(self):
+        # inorder - left, root, right
         stack = []
         data = []
         temp = self.root
@@ -140,12 +143,13 @@ class BSTIterative:
         return data
 
     def preorder(self):
+        # preorder - root, left, right
         stack = []
         data = []
         stack.append(self.root)
         while(stack != []):
             temp = stack.pop()
-            # add root to ordered list
+            # add root to front of ordered list
             data.insert(0, temp.data)
             # add right child to stack
             if(temp.right != None):
@@ -156,6 +160,7 @@ class BSTIterative:
         return data
 
     def postorder(self):
+        # postorder - left, right, root
         stack = []
         data = []
         stack.append(self.root)
