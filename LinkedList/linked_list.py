@@ -68,7 +68,7 @@ class LinkedList:
             self.head = temp.next
             temp = self.head
 
-    def get_node(self, x):
+    def get(self, x):
         # empty list
         if(self.head == None):
             return None
@@ -83,7 +83,7 @@ class LinkedList:
             return True
         return False
 
-    def get_size(self):
+    def size(self):
         counter = 0
         temp = self.head
         while(temp != None):

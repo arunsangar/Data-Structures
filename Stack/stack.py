@@ -33,7 +33,7 @@ class Stack:
             return True
         return False
 
-    def get_size(self):
+    def size(self):
         counter = 0
         temp = self.head
         while(temp != None):

@@ -8,8 +8,8 @@ def linked_list_test():
 
     # empty list
     linkedlist.delete(2)
-    print(linkedlist.get_node(2))
-    print(linkedlist.get_size())
+    print(linkedlist.get(2))
+    print(linkedlist.size())
     linkedlist.print()
 
     linkedlist.insert(1, 0)
@@ -27,11 +27,11 @@ def linked_list_test():
     # 1 node
     linkedlist.insert(1, 0)
     linkedlist.delete(2)
-    print(linkedlist.get_node(2))
-    print(linkedlist.get_size())
+    print(linkedlist.get(2))
+    print(linkedlist.size())
     linkedlist.print()
 
-    print(linkedlist.get_node(1))
+    print(linkedlist.get(1))
     linkedlist.insert(2, 0)
     linkedlist.print()
     linkedlist.delete(2)
@@ -53,9 +53,9 @@ def linked_list_test():
     linkedlist.prepend(0)
     linkedlist.append(4)
 
-    print(linkedlist.get_size())
-    print(linkedlist.get_node(5))
-    print(linkedlist.get_node(3))
+    print(linkedlist.size())
+    print(linkedlist.get(5))
+    print(linkedlist.get(3))
     linkedlist.print()
 
     linkedlist.delete(2)

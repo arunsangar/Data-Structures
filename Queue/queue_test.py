@@ -11,7 +11,7 @@ def queue_test():
     queue.clear()
     print(queue.top())
     print(queue.is_empty())
-    print(queue.get_size())
+    print(queue.size())
 
     # multiple nodes
     data = get_data("Data-Structures/numbers.txt")
@@ -22,6 +22,6 @@ def queue_test():
     print(queue.pop())
     print(queue.top())
     print(queue.is_empty())
-    print(queue.get_size())
+    print(queue.size())
     queue.clear()
     print(queue.is_empty())

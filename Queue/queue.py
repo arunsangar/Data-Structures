@@ -43,7 +43,7 @@ class Queue:
             return True
         return False
 
-    def get_size(self):
+    def size(self):
         temp = self.front
         counter = 0
         while(temp != None):
