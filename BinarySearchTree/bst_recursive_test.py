@@ -1,10 +1,10 @@
-from BinarySearchTree.bst_iterative import *
+from BinarySearchTree.bst_recursive import *
 from helper import *
 
 
-def bst_iterative_test():
-    print("Binary Search Tree Test (iterative)")
-    bst = BSTIterative()
+def bst_recursive_test():
+    print("Binary Search Tree Test (recursive)")
+    bst = BSTRecursive()
 
     # empty BST
     bst.delete(0)

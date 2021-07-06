@@ -1,7 +1,7 @@
 from helper import TreeNode
 
 
-class BinarySearchTree:
+class BSTIterative:
     def __init__(self):
         self.root = None
 
@@ -88,7 +88,7 @@ class BinarySearchTree:
             return None
         return self.root.data
 
-    def get_node(self, x):
+    def get(self, x):
         # empty BST
         if(self.root == None):
             return None
