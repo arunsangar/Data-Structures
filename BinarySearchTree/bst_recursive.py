@@ -5,6 +5,7 @@ class BSTRecursive:
     def __init__(self):
         self.root = None
 
+    # wrapper function - insert_node
     def insert(self, x):
         self.insert_node(x, self.root)
 
@@ -31,6 +32,7 @@ class BSTRecursive:
         else:
             return
 
+    # wrapper function - delete_node
     def delete(self, x):
         self.delete_node(x, self.root, None)
 
@@ -90,17 +92,21 @@ class BSTRecursive:
             return None
         return self.root.data
 
+    # wrapper function - get_node
     def get(self, x):
         return self.get_node(x, self.root)
 
     def get_node(self, x, current):
-        # empty BST
+        # empty BST or node not found
         if(current == None):
             return None
+        # look in left subtree
         if(current.data > x):
             return self.get_node(x, current.left)
+        # look in right subtree
         elif(current.data < x):
             return self.get_node(x, current.right)
+        # node is found
         else:
             return current
 
@@ -109,65 +115,69 @@ class BSTRecursive:
             return True
         return False
 
-    def print_inorder(self):
-        data = self.inorder(self.root)
-        for i in range(0, len(data)):
-            if(i < len(data) - 1):
-                print(data[i], end='->')
+    def print(self, order='inorder'):
+        data = []
+        # select order type
+        if(order == 'inorder'):
+            data = self.inorder(self.root)
+        elif(order == 'preorder'):
+            data = self.preorder(self.root)
+        else:
+            data = self.postorder(self.root)
+        # print ordered list
+        while(data != []):
+            if(len(data) > 1):
+                print(data.pop(0), end='->')
             else:
-                print(data[i])
+                print(data.pop(0))
 
     def inorder(self, current):
+        # inorder - left, root, right
         if(current == None):
             return None
         data = []
+        # traverse left subtree
         temp = self.inorder(current.left)
         if(temp != None):
             data += temp
+        # add root to ordered list
         data.append(current.data)
+        # traverse right subtree
         temp = self.inorder(current.right)
         if(temp != None):
             data += temp
         return data
 
-    def print_preorder(self):
-        data = self.preorder(self.root)
-        for i in range(0, len(data)):
-            if(i < len(data) - 1):
-                print(data[i], end='->')
-            else:
-                print(data[i])
-
     def preorder(self, current):
+        # preorder - root, left, right
         if(current == None):
             return None
         data = []
+        # add root to ordered list
         data.append(current.data)
+        # traverse left subtree
         temp = self.preorder(current.left)
         if(temp != None):
             data += temp
+        # traverse right subtree
         temp = self.preorder(current.right)
         if(temp != None):
             data += temp
         return data
 
-    def print_postorder(self):
-        data = self.postorder(self.root)
-        for i in range(0, len(data)):
-            if(i < len(data) - 1):
-                print(data[i], end='->')
-            else:
-                print(data[i])
-
     def postorder(self, current):
+        # postorder - left, right, root
         if(current == None):
             return None
         data = []
+        # traverse left subtree
         temp = self.postorder(current.left)
         if(temp != None):
             data += temp
+        # traverse right subtree
         temp = self.postorder(current.right)
         if(temp != None):
             data += temp
+        # add root to ordered list
         data.append(current.data)
         return data
