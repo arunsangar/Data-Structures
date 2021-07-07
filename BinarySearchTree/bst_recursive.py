@@ -2,16 +2,19 @@ from helper import TreeNode
 
 
 class BSTRecursive:
+
     def __init__(self):
-        self.root = None
+        self.__root = None
 
     # wrapper function - insert_node
     def insert(self, x):
-        self.insert_node(x, self.root)
+        self.insert_node(x, self.__root)
 
+    # insert specified node in the BST
+    # does not insert if duplicate node
     def insert_node(self, x, current):
-        if(self.root == None):
-            self.root = TreeNode(x)
+        if(self.__root == None):
+            self.__root = TreeNode(x)
         # left subtree
         elif(current.data > x):
             # if empty, add node
@@ -34,8 +37,10 @@ class BSTRecursive:
 
     # wrapper function - delete_node
     def delete(self, x):
-        self.delete_node(x, self.root, None)
+        self.delete_node(x, self.__root, None)
 
+    # delete specified node from the BST
+    # does not delete if node does not exist
     def delete_node(self, x, current, previous):
         # empty BST
         if(current == None):
@@ -58,7 +63,7 @@ class BSTRecursive:
                     child = current.left
                 # node is root
                 if(previous == None):
-                    self.root = child
+                    self.__root = child
                     return
                 # replace node with child
                 if(previous.left == current):
@@ -81,21 +86,24 @@ class BSTRecursive:
                     current.right = successor.right
                 current.data = successor.data
 
+    # delete all nodes from the BST
     def clear(self):
-        temp = self.root
+        temp = self.__root
         while(temp != None):
             self.delete(temp.data)
-            temp = self.root
+            temp = self.__root
 
+    # return data from root node
     def top(self):
-        if(self.root == None):
+        if(self.__root == None):
             return None
-        return self.root.data
+        return self.__root.data
 
     # wrapper function - get_node
     def get(self, x):
-        return self.get_node(x, self.root)
+        return self.get_node(x, self.__root)
 
+    # return node if found
     def get_node(self, x, current):
         # empty BST or node not found
         if(current == None):
@@ -110,20 +118,22 @@ class BSTRecursive:
         else:
             return current
 
+   # return true if empty list
     def is_empty(self):
-        if(self.root == None):
+        if(self.__root == None):
             return True
         return False
 
+    # print BST inorder, preorder or postorder
     def print(self, order='inorder'):
         data = []
         # select order type
         if(order == 'inorder'):
-            data = self.inorder(self.root)
+            data = self.inorder(self.__root)
         elif(order == 'preorder'):
-            data = self.preorder(self.root)
+            data = self.preorder(self.__root)
         else:
-            data = self.postorder(self.root)
+            data = self.postorder(self.__root)
         # print ordered list
         while(data != []):
             if(len(data) > 1):
@@ -131,6 +141,7 @@ class BSTRecursive:
             else:
                 print(data.pop(0))
 
+    # return list of nodes inorder
     def inorder(self, current):
         # inorder - left, root, right
         if(current == None):
@@ -148,6 +159,7 @@ class BSTRecursive:
             data += temp
         return data
 
+    # return list of nodes preorder
     def preorder(self, current):
         # preorder - root, left, right
         if(current == None):
@@ -165,6 +177,7 @@ class BSTRecursive:
             data += temp
         return data
 
+    # return list of nodes postorder
     def postorder(self, current):
         # postorder - left, right, root
         if(current == None):
