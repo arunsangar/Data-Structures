@@ -8,11 +8,11 @@ class BSTRecursive:
 
     # wrapper function - insert_node
     def insert(self, x):
-        self.insert_node(x, self.__root)
+        self.__insert_node(x, self.__root)
 
     # insert specified node in the BST
     # does not insert if duplicate node
-    def insert_node(self, x, current):
+    def __insert_node(self, x, current):
         if(self.__root == None):
             self.__root = TreeNode(x)
         # left subtree
@@ -22,7 +22,7 @@ class BSTRecursive:
                 current.left = TreeNode(x)
             # else recurse down left subtree
             else:
-                self.insert_node(x, current.left)
+                self.__insert_node(x, current.left)
         # right subtree
         elif(current.data < x):
             # if empty, add node
@@ -30,27 +30,27 @@ class BSTRecursive:
                 current.right = TreeNode(x)
             # else recurse down right subtree
             else:
-                self.insert_node(x, current.right)
+                self.__insert_node(x, current.right)
         # duplicate node condition
         else:
             return
 
     # wrapper function - delete_node
     def delete(self, x):
-        self.delete_node(x, self.__root, None)
+        self.__delete_node(x, self.__root, None)
 
     # delete specified node from the BST
     # does not delete if node does not exist
-    def delete_node(self, x, current, previous):
+    def __delete_node(self, x, current, previous):
         # empty BST
         if(current == None):
             return
         # left subtree
         if(current.data > x):
-            self.delete_node(x, current.left, current)
+            self.__delete_node(x, current.left, current)
         # right subtree
         elif(current.data < x):
-            self.delete_node(x, current.right, current)
+            self.__delete_node(x, current.right, current)
         # current nodes is set for deletion
         else:
             # node has at most one child
@@ -101,19 +101,19 @@ class BSTRecursive:
 
     # wrapper function - get_node
     def get(self, x):
-        return self.get_node(x, self.__root)
+        return self.__get_node(x, self.__root)
 
     # return node if found
-    def get_node(self, x, current):
+    def __get_node(self, x, current):
         # empty BST or node not found
         if(current == None):
             return None
         # look in left subtree
         if(current.data > x):
-            return self.get_node(x, current.left)
+            return self.__get_node(x, current.left)
         # look in right subtree
         elif(current.data < x):
-            return self.get_node(x, current.right)
+            return self.__get_node(x, current.right)
         # node is found
         else:
             return current
