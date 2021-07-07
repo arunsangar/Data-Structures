@@ -2,9 +2,12 @@ from helper import Node
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
 
+    def __init__(self):
+        self.__head = None
+
+    # insert specified node at desired location
+    # does not insert if location > size
     def insert(self, x, loc):
         # undefined location
         if(loc < 0):
@@ -15,7 +18,7 @@ class LinkedList:
         # insert at specified location
         else:
             node = Node(x)
-            temp = self.head
+            temp = self.__head
             counter = 0
             # find insertion point
             while(counter < loc - 1 and temp != None):
@@ -26,33 +29,35 @@ class LinkedList:
                 node.next = temp.next
                 temp.next = node
 
+    # insert node at front of list
     def prepend(self, x):
-        # insert at front of list
         node = Node(x)
-        node.next = self.head
-        self.head = node
+        node.next = self.__head
+        self.__head = node
 
+    # insert node at back of list
     def append(self, x):
         # empty list
-        if(self.head == None):
-            self.head = Node(x)
-        # insert at back of list
+        if(self.__head == None):
+            self.__head = Node(x)
+        # find last node and insert
         else:
-            temp = self.head
-            # get the last node
+            temp = self.__head
             while(temp.next != None):
                 temp = temp.next
             temp.next = Node(x)
 
+    # delete specified node from the list
+    # does not delete if node does not exist
     def delete(self, x):
         # empty list
-        if(self.head == None):
+        if(self.__head == None):
             return
-        temp = self.head
-        prev = self.head
+        temp = self.__head
+        prev = self.__head
         # delete first node (head)
         if(temp.data == x):
-            self.head = temp.next
+            self.__head = temp.next
         else:
             # find node set for deletion
             while(temp != None and temp.data != x):
@@ -62,37 +67,42 @@ class LinkedList:
             if(temp != None):
                 prev.next = temp.next
 
+    # delete all nodes from the list
     def clear(self):
-        temp = self.head
+        temp = self.__head
         while(temp != None):
-            self.head = temp.next
-            temp = self.head
+            self.__head = temp.next
+            temp = self.__head
 
+    # return node if found
     def get(self, x):
         # empty list
-        if(self.head == None):
+        if(self.__head == None):
             return None
-        temp = self.head
         # find the node
+        temp = self.__head
         while (temp != None and temp.data != x):
             temp = temp.next
         return temp
 
+    # return true if list is empty
     def is_empty(self):
-        if(self.head == None):
+        if(self.__head == None):
             return True
         return False
 
+    # return size of list
     def size(self):
         counter = 0
-        temp = self.head
+        temp = self.__head
         while(temp != None):
             temp = temp.next
             counter += 1
         return counter
 
+    # print list front to back
     def print(self):
-        temp = self.head
+        temp = self.__head
         while(temp != None):
             if(temp.next != None):
                 print(temp.data, end='->')
