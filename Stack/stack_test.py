@@ -14,7 +14,7 @@ def stack_test():
     print(stack.size())
 
     # multiple nodes
-    data = get_data("Data-Structures/numbers.txt")
+    data = get_data("Numbers/numbers.txt")
     for d in data:
         stack.push(d)
     stack.print()

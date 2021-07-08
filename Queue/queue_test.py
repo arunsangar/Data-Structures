@@ -14,7 +14,7 @@ def queue_test():
     print(queue.size())
 
     # multiple nodes
-    data = get_data("Data-Structures/numbers.txt")
+    data = get_data("Numbers/numbers.txt")
     for d in data:
         queue.push(d)
     queue.print()

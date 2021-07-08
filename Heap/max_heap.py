@@ -1,4 +1,4 @@
-from helper import HeapNode
+from nodes import HeapNode
 
 
 class MaxHeap:

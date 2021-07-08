@@ -1,4 +1,4 @@
-from helper import TreeNode
+from nodes import TreeNode
 
 
 class BSTRecursive:
