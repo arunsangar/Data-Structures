@@ -58,8 +58,8 @@ class LinkedList:
             return
         temp = self.__head
         # delete first node (head)
-        if(self.__head.data == data):
-            self.__head = self.__head.next
+        if(temp.data == data):
+            self.__head = temp.next
             temp = None
         else:
             # find node set for deletion
