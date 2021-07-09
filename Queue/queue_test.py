@@ -1,5 +1,5 @@
 from Queue.queue import *
-from helper import *
+from Utilities.helper import get_data
 
 
 def queue_test():
@@ -14,7 +14,7 @@ def queue_test():
     print(queue.size())
 
     # multiple nodes
-    data = get_data("Numbers/numbers.txt")
+    data = get_data("TestFiles/numbers.txt")
     for d in data:
         queue.push(d)
     queue.print()

@@ -1,4 +1,8 @@
-from nodes import TreeNode
+from Utilities.nodes import TreeNode
+from Utilities.make_list import inorder
+from Utilities.make_list import preorder
+from Utilities.make_list import postorder
+from Utilities.helper import print_list
 
 
 class BSTIterative:
@@ -121,68 +125,8 @@ class BSTIterative:
         data = []
         # select order type
         if(order == 'inorder'):
-            data = self.inorder()
+            print_list(inorder(self.__root))
         elif(order == 'preorder'):
-            data = self.preorder()
+            print_list(preorder(self.__root))
         else:
-            data = self.postorder()
-        # print ordered list
-        while(data != []):
-            if(len(data) > 1):
-                print(data.pop(), end='->')
-            else:
-                print(data.pop())
-
-    # return list of nodes inorder
-    def inorder(self):
-        # inorder - left, root, right
-        stack = []
-        data = []
-        temp = self.__root
-        while(stack != [] or temp != None):
-            # traverse left, as far as possible
-            if(temp != None):
-                stack.append(temp)
-                temp = temp.left
-            # add root to ordered list and move to right child
-            else:
-                temp = stack.pop()
-                data.insert(0, temp.data)
-                temp = temp.right
-        return data
-
-    # return list of nodes preorder
-    def preorder(self):
-        # preorder - root, left, right
-        stack = []
-        data = []
-        stack.append(self.__root)
-        while(stack != []):
-            temp = stack.pop()
-            # add root to front of ordered list
-            data.insert(0, temp.data)
-            # add right child to stack
-            if(temp.right != None):
-                stack.append(temp.right)
-            # add left child to stack
-            if(temp.left != None):
-                stack.append(temp.left)
-        return data
-
-    # return list of nodes postorder
-    def postorder(self):
-        # postorder - left, right, root
-        stack = []
-        data = []
-        stack.append(self.__root)
-        while(stack != []):
-            temp = stack.pop()
-            # add root to back of ordered list
-            data.append(temp.data)
-            # add left child to stack
-            if(temp.left != None):
-                stack.append(temp.left)
-            # add right child to stack
-            if(temp.right != None):
-                stack.append(temp.right)
-        return data
+            print_list(postorder(self.__root))

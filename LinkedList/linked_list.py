@@ -1,4 +1,7 @@
-from nodes import Node
+from Utilities.nodes import Node
+from Utilities.make_list import forward
+from Utilities.make_list import backward
+from Utilities.helper import print_list
 
 
 class LinkedList:
@@ -100,12 +103,9 @@ class LinkedList:
             counter += 1
         return counter
 
-    # print list front to back
-    def print(self):
-        temp = self.__head
-        while(temp != None):
-            if(temp.next != None):
-                print(temp.data, end='->')
-            else:
-                print(temp.data)
-            temp = temp.next
+    # print list forward or backward
+    def print(self, order='forward'):
+        if(order == 'forward'):
+            print_list(forward(self.__head))
+        else:
+            print_list(backward(self.__head))

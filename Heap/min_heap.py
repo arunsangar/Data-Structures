@@ -1,4 +1,8 @@
-from nodes import HeapNode
+from Utilities.nodes import HeapNode
+from Utilities.make_list import inorder
+from Utilities.make_list import preorder
+from Utilities.make_list import postorder
+from Utilities.helper import print_list
 
 
 class MinHeap:
@@ -116,71 +120,11 @@ class MinHeap:
         data = []
         # select order type
         if(order == 'inorder'):
-            data = self.inorder(self.__root)
+            print_list(inorder(self.__root))
         elif(order == 'preorder'):
-            data = self.preorder(self.__root)
+            print_list(preorder(self.__root))
         else:
-            data = self.postorder(self.__root)
-        # print ordered list
-        while(data != []):
-            if(len(data) > 1):
-                print(data.pop(0), end='->')
-            else:
-                print(data.pop(0))
-
-    # return list of nodes inorder
-    def inorder(self, current):
-        # inorder - left, root, right
-        if(current == None):
-            return None
-        data = []
-        # traverse left subtree
-        temp = self.inorder(current.left)
-        if(temp != None):
-            data += temp
-        # add root to ordered list
-        data.append(current.data)
-        # traverse right subtree
-        temp = self.inorder(current.right)
-        if(temp != None):
-            data += temp
-        return data
-
-    # return list of nodes preorder
-    def preorder(self, current):
-        # preorder - root, left, right
-        if(current == None):
-            return None
-        data = []
-        # add root to ordered list
-        data.append(current.data)
-        # traverse left subtree
-        temp = self.preorder(current.left)
-        if(temp != None):
-            data += temp
-        # traverse right subtree
-        temp = self.preorder(current.right)
-        if(temp != None):
-            data += temp
-        return data
-
-    # return list of nodes postorder
-    def postorder(self, current):
-        # postorder - left, right, root
-        if(current == None):
-            return None
-        data = []
-        # traverse left subtree
-        temp = self.postorder(current.left)
-        if(temp != None):
-            data += temp
-        # traverse right subtree
-        temp = self.postorder(current.right)
-        if(temp != None):
-            data += temp
-        # add root to ordered list
-        data.append(current.data)
-        return data
+            print_list(postorder(self.__root))
 
     # used after insertion to preserve max heap
     def __percolate_up(self, current):

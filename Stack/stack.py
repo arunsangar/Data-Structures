@@ -1,4 +1,7 @@
-from nodes import Node
+from Utilities.nodes import Node
+from Utilities.make_list import forward
+from Utilities.make_list import backward
+from Utilities.helper import print_list
 
 
 class Stack:
@@ -6,13 +9,13 @@ class Stack:
     def __init__(self):
         self.__head = None
 
-    # push node to front of stack
+    # push node to top of stack
     def push(self, x):
         temp = Node(x)
         temp.next = self.__head
         self.__head = temp
 
-    # pop front node and return data
+    # remove and return top node
     def pop(self):
         # empty stack
         if(self.__head == None):
@@ -20,7 +23,7 @@ class Stack:
         # stack has at least one node
         temp = self.__head
         self.__head = temp.next
-        return temp.data
+        return temp
 
     # delete all nodes from the stack
     def clear(self):
@@ -48,12 +51,9 @@ class Stack:
             counter += 1
         return counter
 
-    # print stack front to back
-    def print(self):
-        temp = self.__head
-        while(temp != None):
-            if(temp.next != None):
-                print(temp.data, end='->')
-            else:
-                print(temp.data)
-            temp = temp.next
+    # print stack forward or backward
+    def print(self, order='forward'):
+        if(order == 'forward'):
+            print_list(forward(self.__head))
+        else:
+            print_list(backward(self.__head))

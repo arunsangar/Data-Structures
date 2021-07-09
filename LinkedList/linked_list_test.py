@@ -1,5 +1,4 @@
 from LinkedList.linked_list import *
-from numbers import *
 
 
 def linked_list_test():

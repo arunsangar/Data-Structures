@@ -1,5 +1,5 @@
 from Stack.stack import *
-from helper import *
+from Utilities.helper import get_data
 
 
 def stack_test():
@@ -14,7 +14,7 @@ def stack_test():
     print(stack.size())
 
     # multiple nodes
-    data = get_data("Numbers/numbers.txt")
+    data = get_data("TestFiles/numbers.txt")
     for d in data:
         stack.push(d)
     stack.print()

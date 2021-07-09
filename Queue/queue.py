@@ -1,4 +1,7 @@
-from nodes import Node
+from Utilities.nodes import Node
+from Utilities.make_list import forward
+from Utilities.make_list import backward
+from Utilities.helper import print_list
 
 
 class Queue:
@@ -58,12 +61,9 @@ class Queue:
             counter += 1
         return counter
 
-    # print queue front to back
-    def print(self):
-        temp = self.__front
-        while(temp != None):
-            if(temp.next != None):
-                print(temp.data, end='->')
-            else:
-                print(temp.data)
-            temp = temp.next
+    # print queue forward or backward
+    def print(self, order='forward'):
+        if(order == 'forward'):
+            print_list(forward(self.__front))
+        else:
+            print_list(backward(self.__front))
