@@ -10,10 +10,10 @@ class Queue:
         self.__front = None
         self.__back = None
 
-    # push node to back of queue
-    def push(self, x):
+    # insert node to back of queue
+    def enqueue(self, x):
         # empty queue
-        if(self.__front == None):
+        if(self.empty()):
             self.__front = Node(x)
             self.__back = self.__front
         # insert at back of queue
@@ -21,10 +21,10 @@ class Queue:
             self.__back.next = Node(x)
             self.__back = self.__back.next
 
-    # pop front node and return data
-    def pop(self):
+    # remove and return front node
+    def dequeue(self):
         # empty queue
-        if(self.__front == None):
+        if(self.empty()):
             return None
         # queue has at least one node
         else:
@@ -35,28 +35,62 @@ class Queue:
                 self.__back = None
             return temp.data
 
+    # delete specified node from the queue
+    # does not delete if node does not exist
+    def delete(self, data):
+        # empty queue
+        if(self.empty()):
+            return
+        temp = self.__front
+        # delete first node (front)
+        if(temp.data == data):
+            self.__front = temp.next
+            if(self.__back == temp):
+                self.__back = None
+            temp = None
+        else:
+            # find node set for deletion
+            while(temp is not None and temp.data != data):
+                prev = temp
+                temp = temp.next
+            # delete the node if it was found
+            if(temp is not None):
+                prev.next = temp.next
+                if(self.__back == temp):
+                    self.__back = prev
+                temp = None
+
     # delete all nodes from the queue
     def clear(self):
-        while(self.__front != None):
-            self.pop()
+        while(not self.empty()):
+            temp = self.__front
+            self.__front = temp.next
+            temp = None
+        self.__back = None
 
     # return data from front node
-    def top(self):
-        if(self.__front == None):
+    def front(self):
+        if(self.empty()):
             return None
         return self.__front.data
 
+    # return node if found
+    def get(self, data):
+        # find the node
+        temp = self.__front
+        while (temp is not None and temp.data != data):
+            temp = temp.next
+        return temp
+
     # return true if queue is empty
     def empty(self):
-        if(self.__front == None):
-            return True
-        return False
+        return self.__front is None
 
     # return size of queue
     def size(self):
-        temp = self.__front
         counter = 0
-        while(temp != None):
+        temp = self.__front
+        while(temp is not None):
             temp = temp.next
             counter += 1
         return counter

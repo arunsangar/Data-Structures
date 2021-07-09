@@ -7,12 +7,19 @@ Space Complexity: O(n)
 
 ### Queue
 
+Attributes:
+
+- \_\_front
+- \_\_back
+
 Methods:
 
-- push
-- pop
+- enqueue
+- dequeue
+- delete
 - clear
-- top
+- front
+- get
 - empty
 - size
 - print
