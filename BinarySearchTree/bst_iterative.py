@@ -115,7 +115,7 @@ class BSTIterative:
         return None
 
     # return true if BST is empty
-    def is_empty(self):
+    def empty(self):
         if(self.__root == None):
             return True
         return False

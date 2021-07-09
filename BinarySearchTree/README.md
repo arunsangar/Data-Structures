@@ -14,7 +14,7 @@ Methods:
 - clear
 - top
 - get
-- is_empty
+- empty
 - print
 - inorder
 - preorder
@@ -31,7 +31,7 @@ Methods:
 - clear
 - top
 - get
-- is_empty
+- empty
 - print
 - inorder
 - preorder

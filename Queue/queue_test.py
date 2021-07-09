@@ -10,7 +10,7 @@ def queue_test():
     print(queue.pop())
     queue.clear()
     print(queue.top())
-    print(queue.is_empty())
+    print(queue.empty())
     print(queue.size())
 
     # multiple nodes
@@ -21,7 +21,7 @@ def queue_test():
     print(queue.pop())
     print(queue.pop())
     print(queue.top())
-    print(queue.is_empty())
+    print(queue.empty())
     print(queue.size())
     queue.clear()
-    print(queue.is_empty())
+    print(queue.empty())

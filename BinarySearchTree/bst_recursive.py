@@ -123,7 +123,7 @@ class BSTRecursive:
             return current
 
    # return true if empty list
-    def is_empty(self):
+    def empty(self):
         if(self.__root == None):
             return True
         return False

@@ -47,7 +47,7 @@ class Queue:
         return self.__front.data
 
     # return true if queue is empty
-    def is_empty(self):
+    def empty(self):
         if(self.__front == None):
             return True
         return False

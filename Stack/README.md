@@ -13,6 +13,6 @@ Methods:
 - pop
 - clear
 - top
-- is_empty
+- empty
 - size
 - print

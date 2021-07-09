@@ -37,7 +37,7 @@ class Stack:
         return self.__head.data
 
     # return true if stack is empty
-    def is_empty(self):
+    def empty(self):
         if(self.__head == None):
             return True
         return False

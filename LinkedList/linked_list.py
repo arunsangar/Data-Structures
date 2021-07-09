@@ -89,7 +89,7 @@ class LinkedList:
         return temp
 
     # return true if list is empty
-    def is_empty(self):
+    def empty(self):
         if(self.__head == None):
             return True
         return False

@@ -8,7 +8,7 @@ def bst_iterative_test():
     # empty BST
     bst.delete(0)
     bst.clear()
-    print(bst.is_empty())
+    print(bst.empty())
     print(bst.get(0))
 
     bst.insert(10)
@@ -22,6 +22,6 @@ def bst_iterative_test():
     bst.print('preorder')
     bst.print('postorder')
     bst.delete(0)
-    print(bst.is_empty())
+    print(bst.empty())
     bst.clear()
     print(bst.get(8))

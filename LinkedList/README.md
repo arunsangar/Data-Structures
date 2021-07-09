@@ -15,7 +15,7 @@ Methods:
 - delete
 - clear
 - get
-- is_empty
+- empty
 - size
 - print
 

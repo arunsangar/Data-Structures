@@ -10,7 +10,7 @@ def stack_test():
     print(stack.pop())
     stack.clear()
     print(stack.top())
-    print(stack.is_empty())
+    print(stack.empty())
     print(stack.size())
 
     # multiple nodes
@@ -21,7 +21,7 @@ def stack_test():
     print(stack.pop())
     print(stack.pop())
     print(stack.top())
-    print(stack.is_empty())
+    print(stack.empty())
     print(stack.size())
     stack.clear()
-    print(stack.is_empty())
+    print(stack.empty())
