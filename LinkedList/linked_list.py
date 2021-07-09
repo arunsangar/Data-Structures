@@ -11,7 +11,7 @@ class LinkedList:
 
     # insert specified node at desired location
     # does not insert if location > size
-    def insert(self, data, loc):
+    def insert(self, data, loc=0):
         # undefined location
         if(loc < 0):
             return
