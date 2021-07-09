@@ -7,6 +7,10 @@ Space Complexity: O(n)
 
 ### Singly Linked List
 
+Attributes:
+
+- head
+
 Methods:
 
 - insert
@@ -14,6 +18,7 @@ Methods:
 - append
 - delete
 - clear
+- head
 - get
 - empty
 - size
