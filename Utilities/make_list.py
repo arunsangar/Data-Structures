@@ -21,7 +21,7 @@ def backward(head_node):
 def inorder(current):
     # base case
     if(current == None):
-        return None
+        return []
     data = []
     # traverse left subtree
     temp = inorder(current.left)
@@ -40,7 +40,7 @@ def inorder(current):
 def preorder(current):
     # base case
     if(current == None):
-        return None
+        return []
     data = []
     # add root to ordered list
     data.append(current.data)
@@ -59,7 +59,7 @@ def preorder(current):
 def postorder(current):
     # base case
     if(current == None):
-        return None
+        return []
     data = []
     # traverse left subtree
     temp = postorder(current.left)
