@@ -9,7 +9,7 @@ Space Complexity: O(n)
 
 Attributes:
 
-- head
+- \_\_head
 
 Methods:
 
@@ -28,8 +28,22 @@ Methods:
 
 ### Doubly Linked List
 
+Attributes:
+
+- \_\_head
+
 Methods:
-TODO
+
+- insert
+- prepend
+- append
+- delete
+- clear
+- head
+- get
+- empty
+- size
+- print
 
 ---
 
