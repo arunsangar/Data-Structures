@@ -11,40 +11,43 @@ class MaxHeap:
         self.__root = None
 
     # insert specified node in the heap
-    def insert(self, x, current=None, traverse=''):
-        if(traverse == '' and current == None):
+    def insert(self, data, current=None, traverse=''):
+        if(traverse == '' and current is None):
             # insert into empty heap
-            if(self.__root == None):
-                self.__root = HeapNode(x, None)
+            if(self.empty()):
+                self.__root = HeapNode(data, None)
                 return
             # get binary representation of heap size + 1
             else:
                 traverse = self.__get_bin(self.size() + 1)
-                self.insert(x, self.__root, traverse[1:])
+                self.insert(data, self.__root, traverse[1:])
         # insert left if traversal is complete
         # traverse down left subtree if not
         elif(traverse[0] == '0'):
             if(len(traverse) == 1):
-                current.left = HeapNode(x, current)
+                current.left = HeapNode(data, current)
                 self.__percolate_up(current.left)
             else:
-                self.insert(x, current.left, traverse[1:])
+                self.insert(data, current.left, traverse[1:])
         # insert right if traversal is complete
         # traverse down right subtree if not
         elif(traverse[0] == '1'):
             if(len(traverse) == 1):
-                current.right = HeapNode(x, current)
+                current.right = HeapNode(data, current)
                 self.__percolate_up(current.right)
             else:
-                self.insert(x, current.right, traverse[1:])
+                self.insert(data, current.right, traverse[1:])
 
     # delete specified node from the list
     # does not delete if node does not exist
-    def delete(self, x):
+    def delete(self, data):
         # check if specified node exists
-        temp = self.get(x)
-        if(temp == None):
+        temp = self.get(data)
+        if(temp is None):
             return
+        elif(self.size() == 1):
+            self.__root = None
+            temp = None
         else:
             # get the last node in heap and swap
             last_node = self.__get_last()
@@ -54,13 +57,25 @@ class MaxHeap:
                 last_node.parent.left = None
             else:
                 last_node.parent.right = None
+            last_node = None
             # preserve max heap
             self.__percolate_down(temp)
 
+    # delete all nodes from the heap
+    def clear(self):
+        while(not self.empty()):
+            self.delete(self.__root.data)
+
+    # return data from root node
+    def root(self):
+        if(self.empty()):
+            return None
+        return self.__root.data
+
     # return node if found
-    def get(self, x):
+    def get(self, data):
         # empty heap
-        if(self.__root == None):
+        if(self.empty()):
             return None
         # utilize stack to track unvisited nodes
         stack = []
@@ -68,28 +83,32 @@ class MaxHeap:
         # find the node
         while(stack != []):
             temp = stack.pop()
-            if(x < temp.data):
-                if(temp.left != None):
+            if(data < temp.data):
+                if(temp.left is not None):
                     stack.append(temp.left)
-                if(temp.right != None):
+                if(temp.right is not None):
                     stack.append(temp.right)
-            elif(x == temp.data):
+            elif(data == temp.data):
                 return temp
         return None
+
+    # return true if empty list
+    def empty(self):
+        return self.__root is None
 
     # return size of heap
     def size(self, current=None):
         # initial recursive call
-        if(current == None):
-            if(self.__root == None):
+        if(current is None):
+            if(self.empty()):
                 return 0
             else:
                 return self.size(self.__root)
         # get size of left and right subtree
         size = 0
-        if(current.left != None):
+        if(current.left is not None):
             size += self.size(current.left)
-        if(current.right != None):
+        if(current.right is not None):
             size += self.size(current.right)
         # return size of subtrees + current node
         return size + 1
@@ -97,17 +116,17 @@ class MaxHeap:
     # return height of heap
     def height(self, current=None):
         # initial recursive call
-        if(current == None):
-            if(self.__root == None):
+        if(current is None):
+            if(self.empty()):
                 return 0
             else:
                 return self.height(self.__root)
         # get height of left and right subtrees
         height_left = 0
         height_right = 0
-        if(current.left != None):
+        if(current.left is not None):
             height_left = self.height(current.left)
-        if(current.right != None):
+        if(current.right is not None):
             height_right = self.height(current.right)
         # return the maximum of the two subtrees + 1
         if(height_left > height_right):
@@ -117,8 +136,6 @@ class MaxHeap:
 
     # print heap inorder, preorder or postorder
     def print(self, order='inorder'):
-        data = []
-        # select order type
         if(order == 'inorder'):
             print_list(inorder(self.__root))
         elif(order == 'preorder'):
@@ -129,7 +146,7 @@ class MaxHeap:
     # used after insertion to preserve max heap
     def __percolate_up(self, current):
         # current is root node
-        if(current.parent == None):
+        if(current.parent is None):
             return
         # swap if child is greater than parent
         if(current.data > current.parent.data):
@@ -140,10 +157,10 @@ class MaxHeap:
     # used after deletion to preserve max heap
     def __percolate_down(self, current):
         # current is a leaf node (heap is left filled)
-        if(current.left == None):
+        if(current.left is None):
             return
         # swap if parent is less than child
-        if(current.right == None or current.left.data > current.right.data):
+        if(current.right is None or current.left.data > current.right.data):
             self.__swap(current, current.left)
             self.__percolate_down(current.left)
         else:
@@ -152,9 +169,9 @@ class MaxHeap:
 
     # used in deletion to get the last node
     def __get_last(self, current=None, traverse=''):
-        if(self.__root == None):
+        if(self.empty()):
             return None
-        if(traverse == '' and current == None):
+        if(traverse == '' and current is None):
             traverse = self.__get_bin(self.size())
             return self.__get_last(self.__root, traverse[1:])
         # insert left if traversal is complete

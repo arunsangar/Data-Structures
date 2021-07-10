@@ -7,17 +7,21 @@ Space Complexity: O(n)
 
 ### Max Heap
 
+Attributes:
+
+- \_\_root
+
 Methods:
 
 - insert
 - delete
+- clear
+- root
 - get
+- empty
 - size
 - height
 - print
-- inorder
-- preorder
-- postorder
 - \_\_percolate_up
 - \_\_percolate_down
 - \_\_get_last
@@ -28,17 +32,21 @@ Methods:
 
 ### Min Heap
 
+Attributes:
+
+- \_\_root
+
 Methods:
 
 - insert
 - delete
+- clear
+- root
 - get
+- empty
 - size
 - height
 - print
-- inorder
-- preorder
-- postorder
 - \_\_percolate_up
 - \_\_percolate_down
 - \_\_get_last
