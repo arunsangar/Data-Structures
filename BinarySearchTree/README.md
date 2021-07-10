@@ -9,7 +9,7 @@ Space Complexity: O(n)
 
 Attributes:
 
--\_\_root
+- \_\_root
 
 Methods:
 
