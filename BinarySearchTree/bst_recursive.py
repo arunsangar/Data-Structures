@@ -10,128 +10,164 @@ class BSTRecursive:
     def __init__(self):
         self.__root = None
 
-    # wrapper function - insert_node
-    def insert(self, x):
-        self.__insert_node(x, self.__root)
-
     # insert specified node in the BST
     # does not insert if duplicate node
-    def __insert_node(self, x, current):
-        if(self.__root == None):
-            self.__root = TreeNode(x)
+    def insert(self, data, current=None):
+        if(self.empty()):
+            self.__root = TreeNode(data)
+        elif(current is None):
+            self.insert(data, self.__root)
         # left subtree
-        elif(current.data > x):
+        elif(current.data > data):
             # if empty, add node
-            if(current.left == None):
-                current.left = TreeNode(x)
+            if(current.left is None):
+                current.left = TreeNode(data)
             # else recurse down left subtree
             else:
-                self.__insert_node(x, current.left)
+                self.insert(data, current.left)
         # right subtree
-        elif(current.data < x):
+        elif(current.data < data):
             # if empty, add node
-            if(current.right == None):
-                current.right = TreeNode(x)
+            if(current.right is None):
+                current.right = TreeNode(data)
             # else recurse down right subtree
             else:
-                self.__insert_node(x, current.right)
+                self.insert(data, current.right)
         # duplicate node condition
         else:
             return
 
-    # wrapper function - delete_node
-    def delete(self, x):
-        self.__delete_node(x, self.__root, None)
-
     # delete specified node from the BST
-    # does not delete if node does not exist
-    def __delete_node(self, x, current, previous):
-        # empty BST
-        if(current == None):
+    def delete(self, data, current=None, previous=None):
+        if(self.empty()):
             return
-        # left subtree
-        if(current.data > x):
-            self.__delete_node(x, current.left, current)
-        # right subtree
-        elif(current.data < x):
-            self.__delete_node(x, current.right, current)
+        elif(current is None and previous is None):
+            self.delete(data, self.__root, None)
+        # traverse down left subtree
+        elif(current.data > data):
+            self.delete(data, current.left, current)
+        # traverse down right subtree
+        elif(current.data < data):
+            self.delete(data, current.right, current)
         # current nodes is set for deletion
         else:
             # node has at most one child
-            if(current.left == None or current.right == None):
+            if(current.left is None or current.right is None):
                 child = None
                 # choose child to replace current node
-                if(current.left == None):
+                if(current.left is None):
                     child = current.right
                 else:
                     child = current.left
                 # node is root
-                if(previous == None):
+                if(previous is None):
                     self.__root = child
+                    current = None
                     return
                 # replace node with child
                 if(previous.left == current):
                     previous.left = child
                 else:
                     previous.right = child
+                current = None
             # node has two children
             else:
                 parent = None
                 successor = current.right
                 # find the successor node from the right subtree
-                while(successor.left != None):
+                while(successor.left is not None):
                     parent = successor
                     successor = successor.left
                 # successor's parent is not root
-                if(parent != None):
+                if(parent is not None):
                     parent.left = successor.right
                 # successor's parent is the root
                 else:
                     current.right = successor.right
+                # copy successor data to current node
                 current.data = successor.data
+                successor = None
 
     # delete all nodes from the BST
     def clear(self):
-        temp = self.__root
-        while(temp != None):
-            self.delete(temp.data)
-            temp = self.__root
+        while(not self.empty()):
+            self.delete(self.__root.data)
 
     # return data from root node
-    def top(self):
-        if(self.__root == None):
+    def root(self):
+        if(self.__root is None):
             return None
         return self.__root.data
 
-    # wrapper function - get_node
-    def get(self, x):
-        return self.__get_node(x, self.__root)
-
     # return node if found
-    def __get_node(self, x, current):
-        # empty BST or node not found
-        if(current == None):
+    def get(self, data, current=None):
+        if(self.empty()):
             return None
+        # initial case
+        if(current is None):
+            self.get(data, self.__root)
         # look in left subtree
-        if(current.data > x):
-            return self.__get_node(x, current.left)
+        elif(current.data > data):
+            if(current.left is None):
+                return None
+            else:
+                return self.get(data, current.left)
         # look in right subtree
-        elif(current.data < x):
-            return self.__get_node(x, current.right)
+        elif(current.data < data):
+            if(current.right is None):
+                return None
+            else:
+                return self.get(data, current.right)
         # node is found
         else:
             return current
 
    # return true if empty list
     def empty(self):
-        if(self.__root == None):
-            return True
-        return False
+        return self.__root is None
+
+    # return size of BST
+    def size(self, current=None):
+        if(self.empty()):
+            return 0
+        # initial case
+        elif(current is None):
+            return self.size(self.__root)
+        size = 1
+        # get size of left subtree
+        if(current.left is not None):
+            size += self.size(current.left)
+        # get size of right subtree
+        if(current.right is not None):
+            size += self.size(current.right)
+        return size
+
+    # return height of BST
+    def height(self, current=None):
+        if(self.empty()):
+            return 0
+        # initial case
+        elif(current is None):
+            return self.height(self.__root)
+        left_height = 0
+        right_height = 0
+        # base case
+        if(current.left is None and current.right is None):
+            return 1
+        # get height of left sub tree
+        if(current.left is not None):
+            left_height = self.height(current.left)
+        # get height of right subtree
+        if(current.right is not None):
+            right_height = self.height(current.right)
+        # return greater height value
+        if(left_height > right_height):
+            return left_height + 1
+        else:
+            return right_height + 1
 
     # print BST inorder, preorder or postorder
     def print(self, order='inorder'):
-        data = []
-        # select order type
         if(order == 'inorder'):
             print_list(inorder(self.__root))
         elif(order == 'preorder'):

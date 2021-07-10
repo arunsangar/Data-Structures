@@ -7,32 +7,38 @@ Space Complexity: O(n)
 
 ### Binary Search Tree (Iterative)
 
+Attributes:
+
+-\_\_root
+
 Methods:
 
 - insert
 - delete
 - clear
-- top
+- root
 - get
 - empty
+- size
+- height
 - print
-- inorder
-- preorder
-- postorder
 
 ---
 
 ### Binary Search Tree (Recursive)
 
+Attributes:
+
+- \_\_root
+
 Methods:
 
 - insert
 - delete
 - clear
-- top
+- root
 - get
 - empty
+- size
+- height
 - print
-- inorder
-- preorder
-- postorder
