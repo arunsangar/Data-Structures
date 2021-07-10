@@ -49,5 +49,19 @@ Methods:
 
 ### Circular Linked List
 
+Attributes:
+
+- \_\_last
+
 Methods:
-TODO
+
+- insert
+- prepend
+- append
+- delete
+- clear
+- head
+- get
+- empty
+- size
+- print

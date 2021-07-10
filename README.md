@@ -16,6 +16,7 @@
 
 - Linked List
 - Double Linked List
+- Circular Linked List
 - Stack
 - Queue
 - Binary Search Tree (Iterative)
