@@ -28,5 +28,21 @@ Methods:
 
 ### Priority Queue
 
+Attributes:
+
+- \_\_queue
+
 Methods:
-TODO
+
+- enqueue
+- dequeue
+- delete
+- clear
+- front
+- get
+- empty
+- size
+- print
+- \_\_percolate_up
+- \_\_percolate_down
+- \_\_get_index

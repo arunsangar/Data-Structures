@@ -19,9 +19,10 @@
 - Circular Linked List
 - Stack
 - Queue
+- Priority Queue (Array Heap)
 - Binary Search Tree (Iterative)
 - Binary Search Tree (Recursive)
-- Min Heap
-- Max Heap
+- Min Heap (Pointer Heap)
+- Max Heap (Pointer Heap)
 
 ---

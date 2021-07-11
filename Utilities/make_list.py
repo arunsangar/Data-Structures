@@ -31,6 +31,14 @@ def circular(last_node):
     return list
 
 
+# return list of nodes level order (priority queue)
+def priority(queue):
+    list = []
+    for node in queue:
+        list.append(node.data)
+    return list
+
+
 # return list of nodes inorder - left, root, right
 def inorder(current):
     # base case

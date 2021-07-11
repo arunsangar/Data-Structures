@@ -24,3 +24,9 @@ class HeapNode:
         self.parent = parent
         self.left = None
         self.right = None
+
+
+class PQNode:
+    def __init__(self, data, priority):
+        self.data = data
+        self.priority = priority
