@@ -18,6 +18,15 @@ class TreeNode:
         self.right = None
 
 
+class AVLTreeNode:
+    def __init__(self, data, parent):
+        self.data = data
+        self.parent = parent
+        self.left = None
+        self.right = None
+        self.height = 1
+
+
 class HeapNode:
     def __init__(self, data, parent):
         self.data = data

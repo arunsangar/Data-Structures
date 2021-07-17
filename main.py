@@ -8,6 +8,7 @@ from BinarySearchTree.bst_iterative_test import bst_iterative_test
 from BinarySearchTree.bst_recursive_test import bst_recursive_test
 from Heap.max_heap_test import max_heap_test
 from Heap.min_heap_test import min_heap_test
+from Tree.avl_tree_test import avl_tree_test
 
 if __name__ == '__main__':
     linked_list_test()
@@ -20,3 +21,4 @@ if __name__ == '__main__':
     bst_recursive_test()
     max_heap_test()
     min_heap_test()
+    avl_tree_test()
