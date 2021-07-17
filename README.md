@@ -20,9 +20,10 @@
 - Stack
 - Queue
 - Priority Queue (Array Heap)
-- Binary Search Tree (Iterative)
-- Binary Search Tree (Recursive)
 - Min Heap (Pointer Heap)
 - Max Heap (Pointer Heap)
+- Binary Search Tree (Iterative)
+- Binary Search Tree (Recursive)
+- AVL Tree
 
 ---
