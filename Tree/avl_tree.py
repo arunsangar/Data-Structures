@@ -40,23 +40,8 @@ class AVLTree:
             self.__update_height(current)
             # check if the tree is unbalanced
             node, balance = self.__check_balance(current)
-            # case 0 - tree is balanced
-            if(balance is None):
-                return
-            # case 1 - left left - right rotate
-            if(balance > 1 and data < node.left.data):
-                self.__right_rotate(node)
-            # case 2 - right right - left rotate
-            elif(balance < -1 and data > node.right.data):
-                self.__left_rotate(node)
-            # case 3 - left right - left right rotate
-            elif(balance > 1 and data > node.left.data):
-                self.__left_rotate(node.left)
-                self.__right_rotate(node)
-            # case 4 - right left - right left rotate
-            elif(balance < -1 and data < node.right.data):
-                self.__right_rotate(node.right)
-                self.__left_rotate(node)
+            # rebalance tree
+            self.__rebalance(data, node, balance)
 
     # delete specified node from the AVL Tree
     def delete(self, data):
@@ -119,23 +104,8 @@ class AVLTree:
         self.__update_height(current)
         # check if the tree is unbalanced
         node, balance = self.__check_balance(current)
-        # case 0 - tree is balanced
-        if(balance is None):
-            return
-        # case 1 - left left - right rotate
-        if(balance > 1 and data < node.left.data):
-            self.__right_rotate(node)
-        # case 2 - right right - left rotate
-        elif(balance < -1 and data > node.right.data):
-            self.__left_rotate(node)
-        # case 3 - left right - left right rotate
-        elif(balance > 1 and data > node.left.data):
-            self.__left_rotate(node.left)
-            self.__right_rotate(node)
-        # case 4 - right left - right left rotate
-        elif(balance < -1 and data < node.right.data):
-            self.__right_rotate(node.right)
-            self.__left_rotate(node)
+        # rebalance tree
+        self.__rebalance(data, node, balance)
 
     # delete all nodes from the AVL Tree
     def clear(self):
@@ -235,6 +205,26 @@ class AVLTree:
                 return current, left - right
             current = current.parent
         return None, None
+
+    # rebalance tree with left/right rotations
+    def __rebalance(self, data, node, balance):
+        # case 0 - tree is balanced
+        if(balance is None):
+            return
+        # case 1 - left left - right rotate
+        if(balance > 1 and data < node.left.data):
+            self.__right_rotate(node)
+        # case 2 - right right - left rotate
+        elif(balance < -1 and data > node.right.data):
+            self.__left_rotate(node)
+        # case 3 - left right - left right rotate
+        elif(balance > 1 and data > node.left.data):
+            self.__left_rotate(node.left)
+            self.__right_rotate(node)
+        # case 4 - right left - right left rotate
+        elif(balance < -1 and data < node.right.data):
+            self.__right_rotate(node.right)
+            self.__left_rotate(node)
 
     # used to rebalance AVL Tree
     def __left_rotate(self, z):
