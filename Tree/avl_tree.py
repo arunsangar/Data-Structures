@@ -58,9 +58,89 @@ class AVLTree:
                 self.__right_rotate(node.right)
                 self.__left_rotate(node)
 
-    # def delete(self, data):
+    # delete specified node from the AVL Tree
+    def delete(self, data):
+        # find node set for deletion
+        current = self.__root
+        prev = None
+        while(current is not None and current.data != data):
+            prev = current
+            if(data < current.data):
+                current = current.left
+            else:
+                current = current.right
+        # node not found
+        if(current is None):
+            return
+        # node has at most one child
+        if(current.left is None or current.right is None):
+            child = None
+            # choose child to replace current node
+            if(current.left is None):
+                child = current.right
+            else:
+                child = current.left
+            # node is root
+            if(prev is None):
+                self.__root = child
+                if(child is not None):
+                    child.parent = None
+                current = None
+                return
+            # replace node with child
+            if(current == prev.left):
+                prev.left = child
+            else:
+                prev.right = child
+            if(child is not None):
+                child.parent = prev
+            current = prev
+        # node has two children
+        else:
+            successor = current.right
+            parent = None
+            # find the successor node from the right subtree
+            while(successor.left is not None):
+                parent = successor
+                successor = successor.left
+            # successor's parent is not root
+            if(parent is not None):
+                parent.left = successor.right
+                if(successor.right is not None):
+                    successor.right.parent = parent
+            # successor's parent is the root
+            else:
+                current.right = successor.right
+                if(successor.right is not None):
+                    successor.right.parent = current
+            current.data = successor.data
+            current = parent
+        # update heights based on deletion point
+        self.__update_height(current)
+        # check if the tree is unbalanced
+        node, balance = self.__check_balance(current)
+        # case 0 - tree is balanced
+        if(balance is None):
+            return
+        # case 1 - left left - right rotate
+        if(balance > 1 and data < node.left.data):
+            self.__right_rotate(node)
+        # case 2 - right right - left rotate
+        elif(balance < -1 and data > node.right.data):
+            self.__left_rotate(node)
+        # case 3 - left right - left right rotate
+        elif(balance > 1 and data > node.left.data):
+            self.__left_rotate(node.left)
+            self.__right_rotate(node)
+        # case 4 - right left - right left rotate
+        elif(balance < -1 and data < node.right.data):
+            self.__right_rotate(node.right)
+            self.__left_rotate(node)
 
-    # def clear(self):
+    # delete all nodes from the AVL Tree
+    def clear(self):
+        while(not self.empty()):
+            self.delete(self.__root.data)
 
     # return data from root node
     def root(self):
@@ -141,7 +221,7 @@ class AVLTree:
     # checks for imbalance after insertion/deletion
     def __check_balance(self, current):
         if(current is None):
-            return
+            return None, None
         while(current is not None):
             if(current.left is None):
                 left = 0
